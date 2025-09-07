@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>TELA Explorer</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles-core.css">
+    <link rel="stylesheet" href="styles-components.css">
+    <link rel="stylesheet" href="styles-enhanced.css">
+</head>
+<body>
+    <div class="glow-overlay"></div>
+    
+    <div id="app">
+        <header class="header-modern">
+            <!-- Top Status Indicators Row -->
+            <div class="status-bar">
+                <div class="status-indicators-mini">
+                    <!-- NODE Status -->
+                    <div id="connection-status" class="status-mini" onclick="loadNetwork()" title="Node Connection Status - Click for Network Health" style="cursor: pointer;">
+                        <span class="status-dot dot-green"></span>
+                        <span class="status-label">NODE</span>
+                    </div>
+                    
+                    <!-- TELA Status -->
+                    <div id="privacy-status" class="status-mini" onclick="window.togglePrivacyModule()" title="TELA Privacy Status - Click to open TELEX">
+                        <span class="status-dot dot-green"></span>
+                        <span class="status-label">TELA</span>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Main Navigation Row -->
+            <div class="main-nav-row">
+                <!-- Logo -->
+                <div class="logo-section">
+                    <a href="#" class="logo-link" onclick="loadHome(); return false;">
+                        <img src="icon100.svg" alt="DERO Explorer" class="header-logo" />
+                    </a>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <nav class="nav-buttons">
+                    <button onclick="window.navToBlocks(this); return false;" class="nav-btn" data-page="blocks">Blocks</button>
+                    <button onclick="window.navToTransactions(this); return false;" class="nav-btn" data-page="transactions">Transactions</button>
+                    <button onclick="window.navToPool(this); return false;" class="nav-btn" data-page="pool">Pool</button>
+                    <button onclick="window.navToContracts(this); return false;" class="nav-btn" data-page="contracts">Contracts</button>
+                    <button onclick="window.navToNetwork(this); return false;" class="nav-btn" data-page="network">Network</button>
+                </nav>
+
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" 
+                           placeholder="Search block height / hash / txid / scid..." 
+                           id="search-input" 
+                           class="search-input"
+                           onkeydown="if(event.key==='Enter')performSearch()">
+                    <div class="search-icon" onclick="performSearch()">🔍</div>
+                </div>
+
+                <!-- Utility Buttons -->
+                <div class="utility-buttons">
+                    <button onclick="window.history.back()" class="utility-btn" title="Go Back">← Back</button>
+                    <button onclick="window.location.reload()" class="utility-btn" title="Refresh">⟲ Refresh</button>
+                </div>
+            </div>
+        </header>
+
+        <div id="main-content">
+            <div class="loading-progress">
+                Loading TELA Explorer...
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Load core JavaScript modules -->
+    <script src="main-core.js"></script>
+    <script src="main-utils.js"></script>
+    <script src="explorer.js"></script>
+    <script src="network-mining.js"></script>
+</body>
+</html> 
